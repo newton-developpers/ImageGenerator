@@ -7,6 +7,9 @@ BASE_FILE_PATH = "C:/Users/81904/development/generativeImage/"
 IMAGE1_FOLDER_NAME = "img1/"
 IMAGE2_FOLDER_NAME = "img2/"
 IMAGE3_FOLDER_NAME = "img3/"
+IMAGE4_FOLDER_NAME = "img4/"
+IMAGE5_FOLDER_NAME = "img5/"
+IMAGE6_FOLDER_NAME = "img6/"
 OUTPUT_FOLDER_NAME = "output/"
 
 FILENAME_ARR_LAYER1 = [ \
