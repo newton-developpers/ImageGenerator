@@ -1,0 +1,70 @@
+使い方
+
+★注意★
+ファイル名やパスに全角文字やスペースを含まないこと。
+
+例)
+    NG) C:\Users\81904\OneDrive\ドキュメント\imageFolder  ※日本語が入っている
+    NG) C:\Users\81904\Downloads\image folder             ※スペースが入っている
+    OK) C:\Users\81904\Downloads\imageFolder
+
+
+◆①フォルダ構成を作る
+
+任意のフォルダ名 ┬ forEnachi.py
+                 ├ img1      #最背面
+                 ├ img2
+                 ├ img3
+                 ├ img4
+                 ├ img5
+                 ├ img6      #最前面
+                 └ output    #出力画像が格納されるフォルダ
+
+
+
+上記のフォルダ構成を作成し、img1 ～ img6 フォルダに画像を格納する。
+
+
+
+◆②ImageStacker.py を少しいじる
+
+ImageStacker.py をテキストエディタで開く
+↓
+
+#触る場所 ここから =================================================================
+BASE_FILE_PATH = "C:/Users/81904/development/generativeImage/"                 ←「任意のフォルダ名」のパス(全角文字NG)
+IMAGE1_FOLDER_NAME = "img1/"                                                   ←素材画像を格納するフォルダ名
+IMAGE2_FOLDER_NAME = "img2/"
+IMAGE3_FOLDER_NAME = "img3/"
+IMAGE4_FOLDER_NAME = "img4/"
+IMAGE5_FOLDER_NAME = "img5/"
+IMAGE6_FOLDER_NAME = "img6/"
+IMAGE7_FOLDER_NAME = "img7/"
+OUTPUT_FOLDER_NAME = "output/"                                                 ←出力画像の保存フォルダ
+
+FILENAME_ARR_LAYER1 = [ \
+                      "newton.png", \                                          ←img1フォルダに格納した画像名のリストを作る(全角文字NG)
+                      "newton2.png", \
+                      "newton3.png", \
+                      ]
+~~~~~~~~~~~~~~~~~~~~~~
+★↑ここのスペースの数は重要なので変えないこと。
+
+
+◆③ImageStacker.pyをダブルクリック
+outputフォルダに画像が出力される。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
