@@ -131,7 +131,15 @@ for filename_layer1 in FILENAME_ARR_LAYER1:
 
                             #書き込み ここから(最後のループ内に入れる)=================
                             cv2.waitKey(0)
-                            cv2.imwrite(BASE_FILE_PATH + OUTPUT_FOLDER_NAME + 'output_'+str(index_L1)+'_'+str(index_L2)+'_'+str(index_L3)+'.png', img)#第二引数に最終的な出力画像をセットする
+                            cv2.imwrite(BASE_FILE_PATH + OUTPUT_FOLDER_NAME + 'output' \
+                                        +'_'+str(index_L1) \
+                                        +'_'+str(index_L2) \
+                                        +'_'+str(index_L3) \
+                                        +'_'+str(index_L4) \
+                                        +'_'+str(index_L5) \
+                                        +'_'+str(index_L6) \
+                                        +'_'+str(index_L7) \
+                                        +'.png', img)#第二引数に最終的な出力画像をセットする
                             cv2.destroyAllWindows()
                             #書き込み ここまで =========================================
 
