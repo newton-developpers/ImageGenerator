@@ -11,7 +11,7 @@
 
 ◆①フォルダ構成を作る
 
-任意のフォルダ名 ┬ forEnachi.py
+任意のフォルダ名 ┬ ImageStacker.py
                  ├ img1      #最背面
                  ├ img2
                  ├ img3
@@ -23,6 +23,12 @@
 
 
 上記のフォルダ構成を作成し、img1 ～ img6 フォルダに画像を格納する。
+
+◆【初回のみ】pythonのOpenCVライブラリをインストールする
+ターミナルで次のコマンドをたたく
+
+pip install opencv-contrib-python
+
 
 
 
@@ -59,7 +65,8 @@ outputフォルダに画像が出力される。
 
 
 
-
+◆OpenCVのライセンスについて
+https://github.com/opencv/opencv/blob/master/LICENSE
 
 
 
