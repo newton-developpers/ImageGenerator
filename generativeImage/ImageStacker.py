@@ -14,15 +14,11 @@ IMAGE7_FOLDER_NAME = "img7/"
 OUTPUT_FOLDER_NAME = "output/"
 
 FILENAME_ARR_LAYER1 = [ \
-                      "newton.png", \
-                      "newton2.png", \
-                      "newton3.png", \
+                      "nitroid2.png", \
                       ]
 
 FILENAME_ARR_LAYER2 = [ \
-                      "face.png", \
                       "face2.png", \
-                      "face3.png", \
                       ]
 
 FILENAME_ARR_LAYER3 = [ \
@@ -31,22 +27,18 @@ FILENAME_ARR_LAYER3 = [ \
 
 FILENAME_ARR_LAYER4 = [ \
                       "img4_1.png", \
-                      "img4_2.png", \
                       ]
 
 FILENAME_ARR_LAYER5 = [ \
                       "img5_1.png", \
-                      "img5_2.png", \
                       ]
 
 FILENAME_ARR_LAYER6 = [ \
                       "img6_1.png", \
-                      "img6_2.png", \
                       ]
 
 FILENAME_ARR_LAYER7 = [ \
                       "img7_1.png", \
-                      "img7_2.png", \
                       ]
 
 #触る場所 ここまで =================================================================
@@ -57,17 +49,19 @@ def putSprite_mask(back, front4, pos):
     bh, bw = back.shape[:2]
     x1, y1 = max(x, 0), max(y, 0)
     x2, y2 = min(x+fw, bw), min(y+fh, bh)
-    if not ((-fw < x < bw) and (-fh < y < bh)) :
-        return back
-    front3 = front4[:, :, :3]
-    mask1 = front4[:, :, 3]
-    mask3 = 255 - cv2.merge((mask1, mask1, mask1))
-    mask_roi = mask3[y1-y:y2-y, x1-x:x2-x]
-    front_roi = front3[y1-y:y2-y, x1-x:x2-x]
-    roi = back[y1:y2, x1:x2]
-    tmp = cv2.bitwise_and(roi, mask_roi)
-    tmp = cv2.bitwise_or(tmp, front_roi)
-    back[y1:y2, x1:x2] = tmp
+#    if not ((-fw < x < bw) and (-fh < y < bh)) :
+#        return back
+#    front3 = front4[:, :, :3]
+#    mask1 = front4[:, :, 3]
+#    mask3 = 255 - cv2.merge((mask1, mask1, mask1))
+#    mask_roi = mask3[y1-y:y2-y, x1-x:x2-x]
+#    front_roi = front3[y1-y:y2-y, x1-x:x2-x]
+#    roi = back[y1:y2, x1:x2]
+#    tmp = cv2.bitwise_and(roi, mask_roi)
+#    tmp = cv2.bitwise_or(tmp, front_roi)
+#    back[y1:y2, x1:x2] = tmp
+    back[y1:y2, x1:x2] = back[y1:y2, x1:x2] * (1 - front4[:, :, 3:] / 255) + \
+                          front4[:, :, :3] * (front4[:, :, 3:] / 255)
     return back
 
 
@@ -80,20 +74,23 @@ for filename_layer1 in FILENAME_ARR_LAYER1:
     
     #合成①(一番下の背景を置くだけだから、合成関数putSprite_mask()使ってない)
     img_layer1 = cv2.imread(BASE_FILE_PATH + IMAGE1_FOLDER_NAME + filename_layer1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-    
+    cv2.imshow('img', img_layer1)#ここは必要に応じて有効にしたり無効にしたりする
+    cv2.waitKey(0)
     #合成②
     index_L2 = 0 #index初期化
     for filename_layer2 in FILENAME_ARR_LAYER2:
         img_layer2 = cv2.imread(BASE_FILE_PATH + IMAGE2_FOLDER_NAME + filename_layer2, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
         img = putSprite_mask(img_layer1, img_layer2, (x,y))
-
+        cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
+        cv2.waitKey(0)
         #合成③
         index_L3 = 0 #index初期化
         for filename_layer3 in FILENAME_ARR_LAYER3:
             img_layer3 = cv2.imread(BASE_FILE_PATH + IMAGE3_FOLDER_NAME + filename_layer3, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
             img_tmp = img.copy()
             img = putSprite_mask(img_tmp, img_layer3, (x,y))
-
+            cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
+            cv2.waitKey(0)
             #合成④
             index_L4 = 0 #index初期化
             for filename_layer4 in FILENAME_ARR_LAYER4:
@@ -124,7 +121,7 @@ for filename_layer1 in FILENAME_ARR_LAYER1:
                             #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
 
                             #書き込み ここから(最後のループ内に入れる)=================
-                            cv2.waitKey(0)
+                            #cv2.waitKey(0)
                             cv2.imwrite(BASE_FILE_PATH + OUTPUT_FOLDER_NAME + 'output' \
                                         +'_'+str(index_L1) \
                                         +'_'+str(index_L2) \
