@@ -11,18 +11,20 @@ IMAGE4_FOLDER_NAME = "img4/"
 IMAGE5_FOLDER_NAME = "img5/"
 IMAGE6_FOLDER_NAME = "img6/"
 IMAGE7_FOLDER_NAME = "img7/"
+IMAGE8_FOLDER_NAME = "img8/"
+IMAGE9_FOLDER_NAME = "img9/"
 OUTPUT_FOLDER_NAME = "output/"
 
 FILENAME_ARR_LAYER1 = [ \
-                      "nitroid2.png", \
+                      "img1_1.png", \
                       ]
 
 FILENAME_ARR_LAYER2 = [ \
-                      "face2.png", \
+                      "img2_1.png", \
                       ]
 
 FILENAME_ARR_LAYER3 = [ \
-                      "eyes.png", \
+                      "img3_1.png", \
                       ]
 
 FILENAME_ARR_LAYER4 = [ \
@@ -41,6 +43,13 @@ FILENAME_ARR_LAYER7 = [ \
                       "img7_1.png", \
                       ]
 
+FILENAME_ARR_LAYER8 = [ \
+                      "img8_1.png", \
+                      ]
+
+FILENAME_ARR_LAYER9 = [ \
+                      "img9_1.png", \
+                      ]
 #触る場所 ここまで =================================================================
 
 def putSprite_mask(back, front4, pos):
@@ -120,20 +129,42 @@ for filename_layer1 in FILENAME_ARR_LAYER1:
                             img = putSprite_mask(img_tmp, img_layer7, (x,y))
                             #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
 
-                            #書き込み ここから(最後のループ内に入れる)=================
-                            #cv2.waitKey(0)
-                            cv2.imwrite(BASE_FILE_PATH + OUTPUT_FOLDER_NAME + 'output' \
-                                        +'_'+str(index_L1) \
-                                        +'_'+str(index_L2) \
-                                        +'_'+str(index_L3) \
-                                        +'_'+str(index_L4) \
-                                        +'_'+str(index_L5) \
-                                        +'_'+str(index_L6) \
-                                        +'_'+str(index_L7) \
-                                        +'.png', img)#第二引数に最終的な出力画像をセットする
-                            cv2.destroyAllWindows()
-                            #書き込み ここまで =========================================
+                            #合成⑧
+                            index_L8 = 0 #index初期化
+                            for filename_layer8 in FILENAME_ARR_LAYER8:
+                                img_layer8 = cv2.imread(BASE_FILE_PATH + IMAGE8_FOLDER_NAME + filename_layer8, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
+                                img_tmp = img.copy()
+                                img = putSprite_mask(img_tmp, img_layer8, (x,y))
+                                #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
 
+                                #合成⑨
+                                index_L9 = 0 #index初期化
+                                for filename_layer9 in FILENAME_ARR_LAYER9:
+                                    img_layer9 = cv2.imread(BASE_FILE_PATH + IMAGE9_FOLDER_NAME + filename_layer9, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
+                                    img_tmp = img.copy()
+                                    img = putSprite_mask(img_tmp, img_layer9, (x,y))
+                                    #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
+
+                                    #書き込み ここから(最後のループ内に入れる)=================
+                                    #cv2.waitKey(0)
+                                    cv2.imwrite(BASE_FILE_PATH + OUTPUT_FOLDER_NAME + 'output' \
+                                                +'_'+str(index_L1) \
+                                                +'_'+str(index_L2) \
+                                                +'_'+str(index_L3) \
+                                                +'_'+str(index_L4) \
+                                                +'_'+str(index_L5) \
+                                                +'_'+str(index_L6) \
+                                                +'_'+str(index_L7) \
+                                                +'_'+str(index_L8) \
+                                                +'_'+str(index_L9) \
+                                                +'.png', img)#第二引数に最終的な出力画像をセットする
+                                    cv2.destroyAllWindows()
+                                    #書き込み ここまで =========================================
+
+                                    #index加算
+                                    index_L9 += 1
+                                #index加算
+                                index_L8 += 1
                             #index加算
                             index_L7 += 1
                         #index加算
