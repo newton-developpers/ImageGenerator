@@ -83,66 +83,60 @@ for filename_layer1 in FILENAME_ARR_LAYER1:
     
     #合成①(一番下の背景を置くだけだから、合成関数putSprite_mask()使ってない)
     img_layer1 = cv2.imread(BASE_FILE_PATH + IMAGE1_FOLDER_NAME + filename_layer1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-    cv2.imshow('img', img_layer1)#ここは必要に応じて有効にしたり無効にしたりする
-    cv2.waitKey(0)
     #合成②
     index_L2 = 0 #index初期化
     for filename_layer2 in FILENAME_ARR_LAYER2:
         img_layer2 = cv2.imread(BASE_FILE_PATH + IMAGE2_FOLDER_NAME + filename_layer2, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-        img = putSprite_mask(img_layer1, img_layer2, (x,y))
-        cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
-        cv2.waitKey(0)
+        img2 = putSprite_mask(img_layer1, img_layer2, (x,y))
         #合成③
         index_L3 = 0 #index初期化
         for filename_layer3 in FILENAME_ARR_LAYER3:
             img_layer3 = cv2.imread(BASE_FILE_PATH + IMAGE3_FOLDER_NAME + filename_layer3, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-            img_tmp = img.copy()
-            img = putSprite_mask(img_tmp, img_layer3, (x,y))
-            cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
-            cv2.waitKey(0)
+            img_tmp = img2.copy()
+            img3 = putSprite_mask(img_tmp, img_layer3, (x,y))
             #合成④
             index_L4 = 0 #index初期化
             for filename_layer4 in FILENAME_ARR_LAYER4:
                 img_layer4 = cv2.imread(BASE_FILE_PATH + IMAGE4_FOLDER_NAME + filename_layer4, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-                img_tmp = img.copy()
-                img = putSprite_mask(img_tmp, img_layer4, (x,y))
+                img_tmp = img3.copy()
+                img4 = putSprite_mask(img_tmp, img_layer4, (x,y))
 
                 #合成⑤
                 index_L5 = 0 #index初期化
                 for filename_layer5 in FILENAME_ARR_LAYER5:
                     img_layer5 = cv2.imread(BASE_FILE_PATH + IMAGE5_FOLDER_NAME + filename_layer5, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-                    img_tmp = img.copy()
-                    img = putSprite_mask(img_tmp, img_layer5, (x,y))
+                    img_tmp = img4.copy()
+                    img5 = putSprite_mask(img_tmp, img_layer5, (x,y))
 
                     #合成⑥
                     index_L6 = 0 #index初期化
                     for filename_layer6 in FILENAME_ARR_LAYER6:
                         img_layer6 = cv2.imread(BASE_FILE_PATH + IMAGE6_FOLDER_NAME + filename_layer6, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-                        img_tmp = img.copy()
-                        img = putSprite_mask(img_tmp, img_layer6, (x,y))
+                        img_tmp = img5.copy()
+                        img6 = putSprite_mask(img_tmp, img_layer6, (x,y))
 
                         #合成⑦
                         index_L7 = 0 #index初期化
                         for filename_layer7 in FILENAME_ARR_LAYER7:
                             img_layer7 = cv2.imread(BASE_FILE_PATH + IMAGE7_FOLDER_NAME + filename_layer7, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-                            img_tmp = img.copy()
-                            img = putSprite_mask(img_tmp, img_layer7, (x,y))
+                            img_tmp = img6.copy()
+                            img7 = putSprite_mask(img_tmp, img_layer7, (x,y))
                             #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
 
                             #合成⑧
                             index_L8 = 0 #index初期化
                             for filename_layer8 in FILENAME_ARR_LAYER8:
                                 img_layer8 = cv2.imread(BASE_FILE_PATH + IMAGE8_FOLDER_NAME + filename_layer8, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-                                img_tmp = img.copy()
-                                img = putSprite_mask(img_tmp, img_layer8, (x,y))
+                                img_tmp = img7.copy()
+                                img8 = putSprite_mask(img_tmp, img_layer8, (x,y))
                                 #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
 
                                 #合成⑨
                                 index_L9 = 0 #index初期化
                                 for filename_layer9 in FILENAME_ARR_LAYER9:
                                     img_layer9 = cv2.imread(BASE_FILE_PATH + IMAGE9_FOLDER_NAME + filename_layer9, -1) #第二引数は -1:with alpha 0:GrayScale 1(or nothing):color
-                                    img_tmp = img.copy()
-                                    img = putSprite_mask(img_tmp, img_layer9, (x,y))
+                                    img_tmp = img8.copy()
+                                    img9 = putSprite_mask(img_tmp, img_layer9, (x,y))
                                     #cv2.imshow('img', img)#ここは必要に応じて有効にしたり無効にしたりする
 
                                     #書き込み ここから(最後のループ内に入れる)=================
@@ -157,7 +151,7 @@ for filename_layer1 in FILENAME_ARR_LAYER1:
                                                 +'_'+str(index_L7) \
                                                 +'_'+str(index_L8) \
                                                 +'_'+str(index_L9) \
-                                                +'.png', img)#第二引数に最終的な出力画像をセットする
+                                                +'.png', img9)#第二引数に最終的な出力画像をセットする
                                     cv2.destroyAllWindows()
                                     #書き込み ここまで =========================================
 
